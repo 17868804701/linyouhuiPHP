@@ -1,0 +1,95 @@
+{extend name="Base/base"/}
+
+{block name="body"}
+	<!-- 标题栏 -->
+	<div class="main-title">
+		<h2>{:lang("_BEHAVIOR_LOG_")}&nbsp;&nbsp;&nbsp;<sub style="color: red">{:lang("_THE_LONGTERM_ACCUMULATION_OF_BEHAVIOR_LOG_WILL_LEAD_TO_THE_WHOLE_SYSTEM_PERFORMANCE_DEGRADATION_")}</sub></h2>
+	</div>
+    <div class="clearfix">
+        <div class="col-xs-8">
+                <button class="btn ajax-get confirm" url="{:url('clear')}">{:lang("_CLEARANCE_WITH_SPACE_")}</button>
+                <button class="btn ajax-post confirm" target-form="ids" url="{:url('remove')}">{:lang("_DELETE_WITH_SPACE_")}</button>
+        </div>
+
+        <div class="col-xs-4">
+            <div class="search-form  pull-right">
+                <div class="input-group" style="width: 200px" >
+                    <input type="text" name="uid" class="search-input form-control" value="{:input('get.uid','','intval')}"
+                           placeholder={:lang("_PLEASE_ENTER_THE_USER_UID_WITH_DOUBLE_")}>
+                    <span class="input-group-btn">  <a class="btn btn-default" href="javascript:;" id="search"
+                                                       url="{:url('Action/actionlog')}"><i
+                            class="icon-search"></i></a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<!-- 数据列表 -->
+	<div class="data-table with-padding">
+	<table class="table table-bordered table-striped ">
+    <thead>
+        <tr>
+		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+		<th class="">{:lang("_NO_")}</th>
+		<th class="">{:lang("_BEHAVIOR_NAME_")}</th>
+		<th class="">{:lang("_EXECUTIVE_")}</th>
+        <th class="">{:lang("_LOG_CONTENT_")}</th>
+		<th class="">{:lang("_EXECUTION_TIME_")}</th>
+		<th class="">{:lang("_OPERATION_")}</th>
+		</tr>
+    </thead>
+    <tbody>
+		{notempty name="_list"}
+		{volist name="_list" id="vo"}
+		<tr>
+            <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>
+			<td>{$vo.id} </td>
+			<td>用户登录</td>
+			<td><a href="{:url('Action/actionlog',array('uid'=>$vo['user_id']))}">{:get_nickname($vo['user_id'])}</a></td>
+            <td>{$vo['remark']}</td>
+			<td><span>{$vo.create_time|time_format}</span></td>
+			<td><a href="{:url('Action/edit?id='.$vo['id'])}">{:lang("_DETAILED_")}</a>
+				<a class="confirm ajax-get" href="{:url('Action/remove?ids='.$vo['id'])}">{:lang("_DELETE_")}</a>
+                </td>
+		</tr>
+		{/volist}
+		{else/}
+		<td colspan="7" class="text-center"> aOh!{:lang("_THERE_IS_NO_CONTENT_")} </td>
+		{/notempty}
+	</tbody>
+    </table>
+	</div>
+	<!-- 分页 -->
+	<div class="with-padding"></div>
+	<!-- /分页-->
+
+{/block}
+{block name="script"}
+<script type="text/javascript">
+$(function(){
+    $("#search").click(function () {
+        var url = $(this).attr('url');
+        var query = $('.search-form').find('input').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, '');
+        query = query.replace(/^&/g, '');
+        if (url.indexOf('?') > 0) {
+            url += '&' + query;
+        } else {
+            url += '?' + query;
+        }
+        window.location.href = url;
+    });
+
+    $("#action_add").click(function(){
+		window.location.href = $(this).attr('url');
+	});
+    //回车搜索
+    $(".search-input").keyup(function (e) {
+        if (e.keyCode === 13) {
+            $("#search").click();
+            return false;
+        }
+    });
+})
+</script>
+{/block}

@@ -1,0 +1,8 @@
+body{ font-family: "Microsoft YaHei" ! important;}
+.content{width:100%;min-height:300px;margin-top:56px;}
+.title{margin-left:82px;color: rgb(1,186,226);font-size: 50px;}
+.connection{font-size: 39px;color: rgb(147,147,147);margin: 0 auto;width: 800px;margin-top: 50px;}
+.B_order{width: 800px;height: 100px;background-repeat:no-repeat;background-size:100% 100%;background-attachment: fixed;margin: 4px auto;border-radius: 15px;background-image: url(../images/apply.png);}
+.order{color: #ffffff;font-size: 46px;position: relative;top: 12px;}
+.state{font-size: 36px;color: rgb(147,147,147);margin: 0 auto;width: 800px;margin-top: 50px;text-align:center;}
+a{text-decoration: none;}

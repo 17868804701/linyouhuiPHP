@@ -1,0 +1,67 @@
+﻿<html>
+{include file="index/Public/header" /}
+<link rel="stylesheet" href="__CSS__/login.css">
+<body class="bg">
+	<!--<img src="Application/Norepeatstr/Static/images/back.png" class="back"></img>
+	<div class="head">
+		<p class="p">登陆</p>
+	</div>-->
+	<form action="{:url('shop/index/regist')}" method="post" class="am-form am-form-horizontal">
+	<div class="middle">
+		<div class="input_box">  
+			<img src="/static/images/user.png" class="img"></img>
+			<input type="text" id="inputnum" placeholder="请输入您的手机号"    value="" name="usernum" autocomplete="off" maxlength="11">
+			<p id="error" class="error" style="display:none;"></p>
+		</div>
+		<div class="input_box">
+			<img src="/static/images/pw.png" class="img"></img>		
+			<input type="password" id="inputpwd" placeholder="请输入密码"  value="" name="password" autocomplete="off">
+		</div>
+		<div class="check">
+			<div style="float:left;width:206px;">
+				<label>
+					<div class=""><a class="color" href="{:url('shop/index/regist')}">未注册，注册</a></div>
+				</label>
+			</div>
+			<div  style="float:right;width:170px;">
+				<div class=""><a class="color" href="" >忘记密码？</a></div>
+			</div>
+		</div>
+	</div>
+	<div class="but">
+		<button class="btn ajax-post btn-success login" id="submit" type="submit" target-form="form-horizontal"><span class="login_font">登录</span></button>
+	</div>
+	</form>
+	<div class="bottom">
+		<label>您的专业企业管家</label>
+	</div>
+	<script src="__JS__/jquery-2.1.4.min.js"></script>
+	<script src="__JS__/login.js"></script>
+	<script>
+	 $(document)
+            .ajaxStart(function(){
+                $("button:submit").addClass("log-in").attr("disabled", true);
+            })
+            .ajaxStop(function(){
+                $("button:submit").removeClass("log-in").attr("disabled", false);
+            });
+	$("form").submit(function(){
+        var self = $(this);
+		console.log("WWW",self);
+		loginCheck();
+		$.post(self.attr("action"),self.serialize(), success, "json");
+        return false;
+
+        function success(data){
+            if(data.status){
+                window.location.href = data.url;
+            } else {
+          
+
+            }
+        }
+    });
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+    {extend name="common@default/base/ucmobile_base" /}
+    {block name="body"}
+        <title>订单详情</title>
+        <link rel="stylesheet" href="__CSS__/weui2.css">
+        <div class="weui-form-preview" style="font-size:42px">
+            <div class="weui-form-preview-hd" style="height: 150px;" >
+                <label class="weui-form-preview-label">支付价格</label>
+                <em class="weui-form-preview-value">¥{$order.order_total_price/100}</em>
+            </div>
+            <div class="weui-form-preview-bd" >
+                <p>
+                    <label class="weui-form-preview-label">公司名称</label>
+                    <span class="weui-form-preview-value">{$order.delivery_company}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">商品名称</label>
+                    <span class="weui-form-preview-value">{$order.product_name}</span>
+                </p>
+                <p>
+                    <label class="weui-form-preview-label">订单号</label>
+                    <span class="weui-form-preview-value">{$order.trans_id}</span>
+                </p>
+            </div>
+        </div>
+    {/block}<!--body end -->
+        

@@ -1,0 +1,118 @@
+﻿<html>
+{include file="index/public/header" /}
+{notempty name="list['cat_title']"}
+<title>{$list['cat_title']}</title>
+{/notempty}
+<link rel="stylesheet" href="__CSS__/detail.css">
+<div style="margin-left: auto;margin-right:auto;overflow:auto;overflow-x: hidden">
+	{notempty name="list['title1']"}
+	<div class="top">
+		<div class="title">{$list['title1']}</div>
+		<div class="content">{$list['detile1']}</div>
+	</div>
+	{/notempty}
+	{notempty name="list['title2']"}
+	<div class="top">
+		<div class="title">{$list['title2']}</div>
+		<div class="content">{$list['detile2']}</div>
+	</div>
+	{/notempty}
+	{notempty name="list['title3']"}
+	<div class="top">
+		<span class="title">{$list['title3']}</span>
+		<img src="" alt="" class="certificate"></img>
+		<div class="content">
+			<span>{$list['detile3']}</span>
+		</div>
+	</div>
+	{/notempty}
+	{notempty name="list['title4']"}
+	<div class="middle">
+		<div class="title">{$list['title4']}</div>
+		<div class="content" style="font-size: 15px;">商品单价:{$list.price}元</div>
+		<div class="content">{$list['detile4']}</div>
+	</div>
+	{/notempty}
+<form id="form" action="{:url('apply',array('mp_id'=>$mp_id,'id'=>$list['id']))}" method="post">
+	<input type="hidden" name="title" value="{$list['cat_title']}">
+	<input type="hidden" name="price" value="{$list.price}">
+
+	<div class="middle">
+		<div class="title">购买数量</div>
+		<div class="content">
+			<input id="min" name="" type="button" value="-"  style="width: 30px;height:26px;"/>
+			<input type="text" name="number" value="1" id="text_box" style="height: 27px;font-size: 14px;text-align: center;width: 88px;"">
+			<input id="add" name="" type="button" value="+"  style="width: 30px;height: 26px;"/></td>
+		</div>
+	</div>
+		{notempty name="list['price_int']"}
+	<div class="bottom">
+		<span class="title">商品规格</span>
+		<!--这里是单选列表-->
+		{volist name="list['price_int']" id="price" offset="0" length="1"}
+		<?php $price = explode('￥',$price);?>
+		<label class="checked font" name="common" >{$price[0]}  {$price[1]}元<input name="price_pay" type="radio"
+																				   value="{$price[1]}" class="choose" checked=""/></label></br>
+		{/volist}
+		{volist name="list['price_int']" id="price" offset="1"}
+		<?php $price = explode('￥',$price);?>
+		<label class=" font" name="common" >{$price[0]}  {$price[1]}元<input name="price_pay" type="radio"
+																			value="{$price[1]}" class="choose"/></label></br>
+		{/volist}
+	</div>
+	{/notempty}
+	{notempty name="list['id']"}
+	<a id="reply_1" style="text-align:center;text-decoration: none;display: block;" >
+		<div class="Bapply">
+			<span class="apply">我要申请</span>
+		</div>
+	</a>
+	{/notempty}
+</form>
+</div>
+<script src="__JS__/jquery-2.1.4.min.js"></script>
+<script>
+    $(function() {
+
+        $('label').addClass(function(n){
+            return "font";
+        });
+        $('label').click(function(){
+            var radioId = $(this).attr('name');
+            $('label').removeAttr('class') && $(this).attr('class', 'checked');
+            $('label').addClass(function(n){
+                return "font";
+            });
+            $('#' + radioId).attr('checked', 'checked');
+        });
+        $('#reply_1').click(function () {
+			$('#form').submit();
+        });
+    });
+</script>
+<script>
+    $(function(){
+        var t = $("#text_box");
+        $("#add").click(function(){
+            t.val(parseInt(t.val())+1)
+            setTotal();
+        })
+        $("#min").click(function(){
+            t.val(parseInt(t.val())-1)
+            setTotal();
+        })
+        function setTotal(){
+            var tt = $("#text_box").val();
+            var  pbinfoid=$("#pbinfoid").val();
+            if(tt<=0){
+                alert('购买数量不能为负！');
+                t.val(parseInt(t.val())+1)
+          }//  else{
+//                window.location.href = "shopping!updateMyCart.action?pbinfoid="+pbinfoid+"&number="+tt;
+//            }
+        }
+
+    })
+</script>
+</body>
+</html>

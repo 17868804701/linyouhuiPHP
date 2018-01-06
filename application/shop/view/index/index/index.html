@@ -1,0 +1,80 @@
+﻿{include file="index/Public/header" /}
+<title>畅久科技</title>
+<link rel="stylesheet" href="__CSS__/index.css">
+<link rel="stylesheet" href="__CSS__/swiper.min.css">
+<link rel="stylesheet" href="__CSS__/swiper.css">
+<script src="__JS__/jquery-2.1.4.min.js"></script>
+<script src="__JS__/swiper.min.js"></script>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<div class="button-sp-area weui-media-box__bd" id="index">
+    <nav>
+        <div class="nav-swiper-container">
+            <div class="swiper-wrapper">
+                {foreach name="slides" item="slides"}
+                <div class="swiper-slide"><a href="{$slides.link}"><img class="slide-img " src="{$slides.image}" mode="aspectFit"></a></div>
+                {/foreach}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </nav>
+    <div id='bk'></div>
+</div>
+<script>
+$(".swiper-container").css("height",$(".swiper-container").width()/2.5);
+</script>
+<script type="text/javascript">
+    var mySwiper = new Swiper(".nav-swiper-container",{
+        direction:"horizontal",/*横向滑动*/
+        pagination: '.swiper-pagination',
+        paginationType : 'fraction',
+
+        autoplay:5000/*每隔5秒自动播放*/
+    })
+</script>
+
+<script>
+    $(document).ready(function() {
+        var data =<?php echo json_encode($list);?>;
+        console.log("AAAA",data.data);
+        var html="";
+        var a=data.data;
+        for(var i=0;i<a.length;i++){
+            var b=a[i].sub;
+            if(i%2==0){
+                html+="<a  href='{:url('lists',['mp_id'=>$mp_id])}?parent_id="+a[i].id+"'>";
+                html+="<div class='index_but'>";
+                html+="<div class='img'>";
+                html+="<img src="+a[i].image+" alt='图标' class='photo'>";
+                html+="</div>";
+                html+="<div class='content'>";
+                html+="<span class='title'>"+a[i].title+"</span></br>";
+                for(var n=0;n<b.length;n++){
+                    html+="<span  class='jieshao'>"+b[n].title+"</span></br>";
+                }
+                html+="</div>";
+                html+="</div>";
+                html+="</a>";
+            }else{
+                html+="<a  href='{:url('lists',['mp_id'=>$mp_id])}?parent_id="+a[i].id+"'>";
+                html+="<div class='index_but_1'>";
+                html+="<div class='img'>";
+                html+="<img src="+a[i].image+" alt='图标' class='photo'>";
+                html+="</div>";
+                html+="<div class='content'>";
+                html+="<span href='{:url('lists')}?parent_id="+a[i].id+"' class='title'>"+a[i].title+"</span></br>";
+                for(var n=0;n<b.length;n++){
+                    html+="<span href='{:url('lists')}?parent_id="+a[i].id+"' class='jieshao_1'>"+b[n].title+"</span></br>";
+                }
+                html+="</div>";
+                html+="</div>";
+                html+="</a>";
+            }
+
+        }
+        document.getElementById("bk").innerHTML = html;
+    });
+</script>
+
+
+</body>
+</html>

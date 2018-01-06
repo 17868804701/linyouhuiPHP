@@ -1,0 +1,11 @@
+.idea
+composer.lock
+*.log
+/application/extra/install.lock
+/application/extra/user.php
+/application/config.php
+/application/database.php
+/runtime/*
+/public/uploads/picture/*
+/public/ueditor/php/uploads/*
+/uploads/

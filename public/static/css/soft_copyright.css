@@ -1,0 +1,15 @@
+﻿body{font-family: "Microsoft YaHei" ! important;}
+.top{width:100%;min-height: 820px;border-bottom: 1px solid #d9d9d9;}
+.middle{width:100%;min-height: 276px;border-bottom: 1px solid #d9d9d9;}
+.bottom{width:100%;min-height:300px;}
+.title{font-size: 50px;float:left;margin-left:80px;margin-top:30px;color: rgb(37,34,34);}
+.certificate{width:100%;height: 500px;background-color:yellow;margin-top: 30px;}
+.content{font-size: 40px;width: 800px;margin: 0 auto;margin-top: 34px;color: #9d9d9d;}
+.discount{color: rgb(147,147,147);font-size: 36px;width: 800px;WORD-BREAK: break-all;overflow: auto;margin-left: 88px;padding-top: 27px;}
+.Bapply{width: 880px;height: 100px;background-repeat:no-repeat;background-size:100% 100%;background-attachment: fixed;margin: 4px auto;border-radius: 16px;background-image: url(../images/apply.png);}
+.apply{color: #ffffff;font-size: 40px;position: relative;top: 22px;}
+.font{font-size:20px;color: rgb(147,147,147);float:left;margin-top: 16px;margin-left: 80px;}
+.choose{display:none;}
+label {cursor: pointer;width: 800px;background: url(../images/2.png) no-repeat 500px top;}
+label.checked {background-position: left bottom; background: url(../images/1.png) no-repeat 500px top;} 
+

@@ -1,0 +1,44 @@
+<html>
+    {include file="index/Public/header" /}
+    <title>我的订单</title>
+    <body>
+        <link rel="stylesheet" href="__CSS__/order.css">
+         <div class="weui-cells">
+             {foreach name="order" item="list"}
+            <a class="weui-cell weui-cell_access" href="{:url( 'shop/index/orderInfo',['id'=>$list.id])}">
+                <div class="weui-cell__hd" style=" width: 40px; height: 40px;"><img src="__PUBLIC__ucuser/static/images/order.png" class=""></div>
+                <div class="weui-cell__bd" style="font-size: 13px;color: rgb(147,147,147);">
+                    <p>{$list.delivery_company}</p>
+                </div>
+                <div class="weui-cell__ft" style="font-size: 14px;">{$list.order_status}</div>
+            </a>
+             {/foreach}
+
+        </div>
+        <!--<div class="top">
+            <div class="div">
+                <div class="name">高薪认证</div>
+                <div class="content">深圳市滴滴叭叭有限公司</div>
+                <div class="state">已支付</div>
+                <button class="info" onclick="window.location.href ='orderInfo'">查看详情</button>
+            </div>
+        </div>
+        <div class="top">
+            <div class="div">
+                <div class="name">高薪认证</div>
+                <div class="content">深圳市滴滴叭叭有限公司</div>
+                <div class="state">已支付</div>
+                <button class="info" onclick="window.location.href ='orderInfo'">查看详情</button>
+            </div>
+        </div>
+        <div class="top">
+            <div class="div">
+                <div class="name">高薪认证</div>
+                <div class="content">深圳市滴滴叭叭有限公司</div>
+                <div class="state">已支付</div>
+                <button class="info" onclick="window.location.href ='orderInfo'">查看详情</button>
+            </div>
+        </div>-->
+    </body> 
+</html>
+        

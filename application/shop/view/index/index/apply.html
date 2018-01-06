@@ -1,0 +1,110 @@
+﻿<html>
+{include file="index/Public/header" /}
+<link rel="stylesheet" href="__CSS__/apply.css">
+<script>
+    function showError(str,ele){
+        if(!ele){
+            ele = $("#error");
+        }
+        ele.text(str).show();
+        /*setTimeout(function(){
+         ele.hide();
+         },2500);*/
+    }
+    function aa(){
+        if(!/^1[3|4|5|8]\d{9}$/.test($("#phone").val())){
+            $("#error").css("margin-top","-30px");
+            showError('手机号不正确');
+            $("#phone").focus();
+            return false;
+        }else if($("#receiver_province").val() == "") {
+            $("#error").css("margin-top","-174px");
+            showError('不能为空');
+            $("#receiver_province").focus();
+            return false;
+        }else if($("#receiver_name").val() == "") {
+            $("#error").css("margin-top","-102px");
+            showError('不能为空');
+            $("#receiver_name").focus();
+            return false;
+        }else if($("#receiver_address").val() == "") {
+            $("#error").css("margin-top","38px");
+            $("#receiver_address").css("margin-top","-28px");
+            showError('不能为空');
+            $("#receiver_address").focus();
+            return false;
+        }else{
+            $('#form').submit();
+            return true;
+        }
+    }
+</script>
+<form id="form" method="post" action="{:url('pay',['mp_id'=>$mp_id])}">
+    <div style="margin-left: auto;margin-right:auto;overflow:auto;overflow-x: hidden">
+    <div class="content">
+        <span class="title">公司完整名称</span>
+        <div class="input">
+            <input class="enter" name="delivery_company" id="delivery_company"> </input>
+        </div>
+    </div>
+    <div class="content">
+        <span class="title">联系人姓名</span>
+        <div class="input">
+            <input class="enter" name="receiver_name" id="receiver_name"> </input>
+        </div>
+    </div>
+    <div class="content">
+        <span class="title">联系人手机号</span>
+        <div class="input">
+            <input class="enter" type="tel" maxlength="11" id="phone" name="receiver_mobile"> </input>
+            <p id="error" class="error" style="display:none;"></p>
+        </div>
+    </div>
+    <div class="content">
+        <span class="title">公司地址</span>
+        <div class="input">
+            <input class="enter" name="receiver_address" id="receiver_address"> </input>
+        </div>
+    </div>
+    <!--{notempty name="list['title4']"}-->
+    <!--<div class="content">-->
+        <!--<div class="prise">-->
+            <!--<div class="title">{$list['title4']}</div>-->
+            <!--<div class="discount">-->
+                <!--{$list['detile4']}-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--{/notempty}-->
+    <input type="hidden" name="product_id" value="{$list.id}">
+    <input type="hidden" name="product_name" value="{$list.title}">
+    <input type="hidden" name="product_price" value="{$list.price*100}">
+    <input type="hidden" name="product_count" value="{$list.number}">
+    <input type="hidden" name="order_total_price" value="{$list.price_pay*100}">
+    <input type="hidden" name="product_img" value="{$list.sum*100}">
+        <div class="content">
+            <div class="prise">
+                <div class="title">商品信息</div>
+                <div class="discount">
+                    商品名称：{$list.title}<br>
+                    单价: {$list.price}元<br>
+                    数量: {$list.number}<br>
+                    总价: {$list.sum}元<br>
+                    当前支付金额：<font style="font-size: large;color:red">{$list.price_pay}元</font> <br>
+                </div>
+            </div>
+        </div>
+    <div style="margin-top:70px;">
+        <a class="pay_div" href="#" onclick="aa()">
+            <div class="Bpay" id="pay">
+                <span class="pay">去支付</span>
+            </div>
+        </a>
+    </div>
+    </div>
+</form>
+<script src="__JS__/jquery-2.1.4.min.js"></script>
+
+
+</body>
+</html>

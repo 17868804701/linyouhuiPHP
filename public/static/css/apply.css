@@ -1,0 +1,21 @@
+body{ font-family: "Microsoft YaHei" ! important;}
+.content{width:100%;min-height: 70px;margin-top: -2px;}
+.title{margin-left: 18px;color: rgb(37,34,34);font-size: 18px;}
+.input{width:90%;height: 40px;margin-top: 4px;margin-left: 18px;background-color: #efeff4;border-radius: 4px;}
+.enter{width:100%;height:100%;border: none;background:none;font-size: 16px;color: #616161;}
+.prise{width:100%;min-height: 70px;}
+.discount{color: rgb(147,147,147);font-size: 14px;width: 800px;WORD-BREAK: break-all;overflow: auto;margin-left:18px;}
+.Bpay{width: 80%;height: 34px;background-repeat:no-repeat;background-size:100% 100%;background-attachment: fixed;margin: 4px auto;border-radius: 4px;background-color: #01bae2;}
+.pay{color: #ffffff;font-size: 16px;position: relative;top: 4px;width: 800px;height: 100px;}
+.choose{float: right;position: relative;top: -115px;margin-right: 91px;}
+.choose_kuang{width: 60px;height: 84px;}
+.dingjin{font-size: 40px;margin-left: 82px;margin-top: 40px;color: rgb(147,147,147);}
+.quanfu{position: relative;top: -14px;}
+.pay_div{margin-top: 78px;text-align:center;text-decoration: none;display: block;}
+.font{font-size: 14px;color: rgb(147,147,147);float:left;margin-top: 16px;margin-left: 18px;}
+.choose{display:none;}
+label {cursor: pointer;width: 797px;background: url(../images/unchecked.png) no-repeat 296px top;}
+label.checked {background-position: left bottom;background: url(../images/selected.png) no-repeat 296px top;}
+.bottom{margin-top:2px;min-height: 55px;}
+.error{float:right;color:red;display:block;font-size:14px;margin-right: 10px;margin-top: -27px;}
+input{font-size:14px;}

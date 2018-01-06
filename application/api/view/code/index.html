@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>邻里邦订单</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="/order/css/weuix.min.css">
+		<script type="application/javascript">
+			function send() {
+                var order_id = document.getElementById('order_id').value;//('name');
+
+			var data = 'id='+order_id;
+                console.log(data,'sss');
+                var XHR = null;
+                if (window.XMLHttpRequest){
+                    XHR = new XMLHttpRequest();
+                }else{
+                    XHR = new ActiveXObject();
+                }
+                XHR.open('post','https://www.linlibang123.com/code');
+                XHR.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+                XHR.send(data);
+                XHR.onreadystatechange = function (e) {
+                    if (XHR.readyState == 4 && XHR.status == 200) {
+                        console.log(XHR.responseText, '文本');
+                        alert('操作成功');
+                    }
+
+                }
+
+            }
+
+		</script>
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+		<header class="mui-bar mui-bar-nav">
+			<h1 id="title" class="mui-title">邻里邦订单</h1>
+		</header>
+
+		<div class="weui-form-preview">
+			<div class="weui-form-preview-hd">
+				<label class="weui-form-preview-label">订单号</label>
+				<em class="weui-form-preview-value">{$order.order_sn}</em>
+				<input type="hidden" id="order_id" value="{$order.id}">
+			</div>
+			<div class="weui-form-preview-hd">
+				<label class="weui-form-preview-label">付款金额</label>
+				<em class="weui-form-preview-value">¥{$order.order_total}</em>
+			</div>
+			<div class="weui-form-preview-hd">
+				<label class="weui-form-preview-label">用户</label>
+				<em class="weui-form-preview-value">{$order.user_name}</em>
+			</div>
+			<div class="weui-form-preview-hd">
+				<label class="weui-form-preview-label">取货</label>
+				<em class="weui-form-preview-value">{if condition="$order.is_send ==2"}<font color="red">买家已取货</font>{elseif condition="$order.is_send ==1"/}<font color="red">买家未取货{/if}</font></em>
+			</div>
+			<div class="weui-form-preview-hd">
+			</div>
+			<div class="weui-form-preview-bd">
+				<p>
+					<label class="weui-form-preview-label">商品</label>
+					<span class="weui-form-preview-value">{$order.goods_name}</span>
+				</p>
+				<p>
+					<label class="weui-form-preview-label">规格</label>
+					<span class="weui-form-preview-value">{$order.spec_key_name}</span>
+				</p>
+				<p>
+					<label class="weui-form-preview-label">数量</label>
+					<span class="weui-form-preview-value">{$order.goods_num}</span>
+				</p>
+				<p>
+					<label class="weui-form-preview-label">单价</label>
+					<span class="weui-form-preview-value">{$order.goods_price}</span>
+				</p>
+				<p>
+					<label class="weui-form-preview-label">地址</label>
+					<span class="weui-form-preview-value">{$order.address}</span>
+				</p>
+
+			</div>
+			<div class="weui-form-preview-ft">
+				<a class="weui-form-preview-btn weui-form-preview-btn-primary" href="javascript:send();">买家已取货</a>
+			</div>
+		</div>
+	</body>
+
+</html>

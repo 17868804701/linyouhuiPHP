@@ -1,0 +1,65 @@
+{extend name="Base/base"/}
+
+{block name="body"}
+
+<div class="admin-main-container">
+
+    <div class="main-title">
+        <h2>用户配置            </h2>
+    </div>
+    <div class="with-padding">
+
+
+        <div class="tab-wrap" style="margin-bottom: 5px">
+            <ul class="nav nav-secondary group_nav">
+                <li class=""><a href="javascript:">注册配置</a></li><li class=""><a href="javascript:">登录配置</a></li><li class=""><a href="javascript:">邮箱验证模版</a></li><li class=""><a href="javascript:">邮箱激活模版</a></li><li class="active"><a href="javascript:">短信配置</a></li><li class=""><a href="javascript:">基础设置</a></li>            </ul>
+        </div>
+        <form action="{:url(request()->action())}" method="post" class="form-horizontal">
+            <div class="group_list" style="display: block;">
+                <label class="item-label">短信发送服务商    <span class="check-tips">（短信发送服务商，需要安装插件）</span></label>
+                <div class="controls ">
+                    <select name="SMS_HOOK" class="form-control" style="width:auto;">
+                        <option value="none">无</option>                <option value="YunSms">云之讯</option>        </select></div>
+                <label class="item-label">短信重发时间    <span class="check-tips">（短信重发时间）</span></label>
+                <div class="controls ">
+                    <input type="text" name="SMS_RESEND" value="60" class="text input-large form-control" style="width: 400px"></div>
+                <label class="item-label">短信平台HTTP    <span class="check-tips">（短信平台HTTP）</span></label>
+                <div class="controls ">
+                    <input type="text" name="SMS_HTTP" value="" class="text input-large form-control" style="width: 400px"></div>
+                <label class="item-label">短信平台HTTPS    <span class="check-tips">（短信平台HTTPS）</span></label>
+                <div class="controls ">
+                    <input type="text" name="SMS_HTTPS" value="" class="text input-large form-control" style="width: 400px"></div>
+                <label class="item-label">短信平台帐号    <span class="check-tips">（短信平台帐号）</span></label>
+                <div class="controls ">
+                    <input type="text" name="SMS_UID" value="" class="text input-large form-control" style="width: 400px"></div>
+                <label class="item-label">短信平台密码    <span class="check-tips">（短信平台密码）</span></label>
+                <div class="controls ">
+                    <input type="text" name="SMS_PWD" value="" class="text input-large form-control" style="width: 400px"></div>
+                <label class="item-label">短信平台开发者ID    <span class="check-tips">（短信平台开发者ID）</span></label>
+                <div class="controls ">
+                    <input type="text" name="SMS_ACCOUNTSID" value="" class="text input-large form-control" style="width: 400px"></div>
+                <label class="item-label">短信平台TOKEN    <span class="check-tips">（短信平台TOKEN）</span></label>
+                <div class="controls ">
+                    <input type="text" name="SMS_TOKEN" value="" class="text input-large form-control" style="width: 400px"></div>
+                <label class="item-label">短信平台应用ID    <span class="check-tips">（短信平台应用ID）</span></label>
+                <div class="controls ">
+                    <input type="text" name="SMS_APPID" value="" class="text input-large form-control" style="width: 400px"></div>
+                <label class="item-label">短信平台模板ID    <span class="check-tips">（短信平台模板ID）</span></label>
+                <div class="controls ">
+                    <input type="text" name="SMS_TEMPLATEID" value="" class="text input-large form-control" style="width: 400px"></div>
+                <label class="item-label">短信内容    <span class="check-tips">（短信内容，必填$verify}验证码，$account}账号）</span></label>
+                <div class="controls ">
+                    <textarea name="SMS_CONTENT" class="text input-large form-control" style="height: 8em;width: 400px;height: 200px">您的验证码为$verify}验证码，账号为$account}</textarea><grammarly-btn><div style="visibility: hidden; z-index: 2;" class="_e725ae-textarea_btn _e725ae-not_focused" data-grammarly-reactid=".9"><div class="_e725ae-transform_wrap" data-grammarly-reactid=".9.0"><div title="Protected by Grammarly" class="_e725ae-status" data-grammarly-reactid=".9.0.0">&nbsp;</div></div></div></grammarly-btn></div>
+            </div>
+            <br>
+
+            <div class="form-item">
+                <button class="btn submit-btn ajax-post btn-success" id="submit" type="submit" target-form="form-horizontal">保存</button>  &nbsp;
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+{/block}

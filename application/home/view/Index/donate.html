@@ -1,0 +1,22 @@
+{extend name="common@default/base/ucmobile_base" /}
+{block name="body"}
+<link rel="stylesheet" href="__CSS__/weui2.css">
+<link rel="stylesheet" href="__CSS__/weui.css">
+<form action="{:url( 'home/Index/donate',array('mp_id'=>$mp_id) )}" method="post"  style="">
+<div class="weui-form-preview" style="font-size:42px">
+    <div class="weui-form-preview-hd" style="height: 150px;" >
+        <label class="weui-form-preview-label">UCToo开源捐赠</label>
+        <em class="weui-form-preview-value">单位元</em>
+    </div>
+    <div class="weui-form-preview-bd" >
+        <p>
+            <label class="weui-form-preview-label">金额</label>
+            <input class="weui-form-preview-value" name="order_total_price"></input>
+        </p>
+    </div>
+</div>
+<div class="weui-form-preview-ft">
+    <button href="#" type="submit"  class="weui_btn weui_btn_primary" style="width: 100%;height: 100px;font-size: 42px;">提交</button>
+</div>
+</form>
+{/block}

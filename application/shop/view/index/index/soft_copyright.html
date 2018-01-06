@@ -1,0 +1,60 @@
+<html>
+{include file="index/Public/header" /}
+<body>
+<link rel="stylesheet" href="__CSS__/soft_copyright.css">
+	<div class="top">
+		<div class="title">{$list[0]['title1']}</div>
+		<div class="content">{$list[0]['detile1']}</div>
+	</div>
+	<div class="top">
+		<div class="title">{$list[0]['title2']}</div>
+		<div class="content">{$list[0]['detile2']}</div>
+	</div>
+	<div class="top">
+		<span class="title">成功案例</span>
+		<img src="" alt="" class="certificate"></img>
+		<div class="content">
+			<span>成都天奥信息科技有限公司于2014年11月11日成都天奥信息科技有限公司</span>
+		</div>
+	</div>
+	<div class="middle"> 
+		<span class="title">优惠价格</span>
+		<div class="discount">
+		<span class="content">原价50000，现价40000</span></br>
+		<span class="content">微信支付300元定金可享受折上折</span></br>
+		</div>
+	</div>
+	
+	<div class="bottom"> 
+		<span class="title">商品规格</span>
+		<!--这里是单选列表-->
+		<label class="font" name="common" id="common">普通25天完成  1500元<input name="guige" type="radio" value="1500" class="choose" checked="checked"/></label></br>
+		<label class="font" name="fast" id="fast">加急15天完成  2500元<input name="guige" type="radio" value="2500" class="choose"/></label></br>
+		<label class="font" name="urgent" id="urgent">急速5天完成&nbsp;&nbsp;  4000元<input name="guige" type="radio" value="4000" class="choose"/></label></br>
+	</div>
+	<div style="padding-top:58px;text-align:center;">
+		<div class="Bapply">
+			<span class="apply" id="reply_1">我要申请</span>
+		</div>
+	</div>
+
+<script src="__JS__/jquery-2.1.4.min.js"></script>
+<script>
+	$(function() {
+		$("#common").attr('class', 'checked');
+		$('label').addClass(function(n){
+		  return "font";
+		});
+	    $('label').click(function(){    
+			var radioId = $(this).attr('name');
+			$('label').removeAttr('class') && $(this).attr('class', 'checked');
+			
+			 $('label').addClass(function(n){
+			  return "font";
+			});
+			$('#' + radioId).attr('checked', 'checked');	
+		});
+	});
+</script>
+</body>
+</html>

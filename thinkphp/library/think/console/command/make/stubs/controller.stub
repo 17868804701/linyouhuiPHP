@@ -1,0 +1,141 @@
+<?php
+
+namespace {%namespace%};
+
+use think\Controller;
+use think\Request;
+
+class {%className%} extends Controller
+{
+    /**
+     * 显示资源列表
+     *
+     * @return \think\Response
+     */
+    public function index(Request $request)
+    {
+        //分页
+        $page = input('page',1);
+        $limit = input('limit',20);
+        //排序
+        $sortby = input('sortby','id');
+        $sort = input('sort','desc');
+        //查找条件
+        $param = input('param.');
+        //清除多余条件
+        foreach($param as $k => $v){
+            if($v == '') unset ($param[$k]);
+        }
+        unset($param['page']);
+        unset($param['limit']);
+        unset($param['sortby']);
+        unset($param['sort']);
+
+        //用order表演示数据
+        $list = db('order')->where($param)->order($sortby,$sort)
+            ->limit($limit)->page($page)
+            ->select();
+        return json($list);
+    }
+
+    /**
+     * 显示创建资源表单页.
+     *
+     * @return \think\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * 保存新建的资源
+     *
+     * @param  \think\Request  $request
+     * @return \think\Response
+     */
+    public function save(Request $request)
+    {
+        $data = input('param.');
+        //用order表演示数据
+        $res = db('order')->save($data);
+        if($res){
+            $this->success('新增成功。');
+        }
+    }
+
+    /**
+     * 显示指定的资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function read($id='')
+    {
+        if($id){
+            //用order表演示数据
+            $data = db('order')->find($id);
+            return json($data);
+        }else{
+            $this->error('请传入要获取数据的id。');
+        }
+    }
+
+    /**
+     * 显示编辑资源表单页.
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function edit($id='')
+    {
+        if($id){
+            //用order表演示数据
+            $data = db('order')->find($id);
+            if($data) return json($data);
+            else $this->error('获取数据错误，请重试');
+        }else{
+            $this->error('请传入要获取数据的id。');
+        }
+    }
+
+    /**
+     * 保存更新的资源
+     *
+     * @param  \think\Request  $request
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function update(Request $request, $id='')
+    {
+        if($id){
+            $data = input('param.');
+            //用order表演示数据
+            $res = db('order')->save($data);
+            if($res){
+                $this->success('更新成功。');
+            }
+        }else{
+            $this->error('请传入要更新数据的id。');
+        }
+    }
+
+    /**
+     * 删除指定资源
+     *
+     * @param  int  $id
+     * @return \think\Response
+     */
+    public function delete($id='')
+    {
+        if($id){
+            //用order表演示数据
+            $res = db('order')->delete($id);
+            if($res){
+                $this->success('删除成功。');
+            }
+        }else{
+            $this->error('请传入要删除数据的id。');
+        }
+    }
+}

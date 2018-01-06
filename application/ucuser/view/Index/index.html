@@ -1,0 +1,185 @@
+{extend name="common@default/base/ucmobile_base" /}
+{block name="body"}
+    <link rel="stylesheet" href="/static/css/personal.css">
+    <div class="weui_cell banner">
+                <div class="weui_cell_hd pic">
+                    {notempty name="user.headimgurl"}
+                        <img class="banner_pic" src="{$user.headimgurl}" alt="用户头像"/>
+                     {else /}
+                         <img class="banner_pic" src="__PUBLIC__ucuser/static/images/head.jpg" alt="用户头像"/>
+                    {/notempty}
+                </div>
+                  {eq name="user.login" value="1"}
+                    <a href="{:url( 'Ucuser/Index/logout',array('mp_id'=>$mp_id) )}" class="login" >退出</a>
+                  {else/}
+                     <a href="{:url( 'Ucuser/Index/login',array('mp_id'=>$mp_id) )}" class="login" >登录/注册</a>
+                   {/eq}
+                <div class="weui_cell_bd info">
+                    <p>15115113460</p>
+                    <p style="font-size:40px;color:#ffffff;">深圳市滴滴叭叭有限公司</p>
+                </div>
+     </div>
+      <div class="weui-cells div1">
+            <a class="weui-cell weui-cell_access div2" href="{:url( 'shop/index/order')}">
+                <div class="weui-cell__hd"><img src="__PUBLIC__ucuser/static/images/order.png" class="div3"></div>
+                <div class="weui-cell__bd div4">
+                    <p>我的订单</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+            <a class="weui-cell weui-cell_access div2" href="{:url( 'shop/index/about')}">
+                <div class="weui-cell__hd"><img src="__PUBLIC__ucuser/static/images/address.png" class="div3"></div>
+                <div class="weui-cell__bd div4">
+                    <p>联系地址</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+        </div>
+
+         <div class="weui-cells div1">
+            <a class="weui-cell weui-cell_access div2" href="#">
+                <div class="weui-cell__hd"><img src="__PUBLIC__ucuser/static/images/integral .png" class="div3"></div>
+                <div class="weui-cell__bd div4">
+                    <p>我的积分</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+            <a class="weui-cell weui-cell_access div2" href="#">
+                <div class="weui-cell__hd"><img src="__PUBLIC__ucuser/static/images/download.png" class="div3"></div>
+                <div class="weui-cell__bd div4">
+                    <p>APP下载</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+        </div>
+        
+{/block}<!--body end -->
+{block name="script"}
+{load href="http://res.wx.qq.com/open/js/jweixin-1.1.0.js" /}
+
+  <script>
+    wx.config({
+      debug: false,
+      appId: '{$js_sign['appId']}',
+      timestamp: {$js_sign['timestamp']},
+      nonceStr: '{$js_sign['nonceStr']}',
+      signature: '{$js_sign['signature']}',
+      jsApiList: [
+        // 所有要调用的 API 都要加到这个列表中
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo'
+      ]
+    });
+	
+	wx.ready(function () {
+      // 在这里调用 API
+	 
+  // 2. 分享接口
+  // 2.1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
+  
+    wx.onMenuShareAppMessage({
+      title: '微会员',
+      desc: '微会员，用户中心。',
+      link: '{$share_url}',
+      imgUrl: '{$user.headimgurl}',
+      trigger: function (res) {
+
+          // 用户确认分享后执行的回调函数
+      },
+      success: function (res) {
+
+          // 用户确认分享后执行的回调函数
+      },
+      cancel: function (res) {
+
+          // 用户取消分享后执行的回调函数
+      },
+      fail:function (res) {
+
+      }
+    });
+    
+
+  // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+ 
+    wx.onMenuShareTimeline({
+      title: '微会员',
+      desc: '微会员，用户中心。',
+      link: '{$share_url}',
+      imgUrl: '{$user.headimgurl}',
+      trigger: function (res) {
+
+            // 用户确认分享后执行的回调函数
+        },
+        success: function (res) {
+
+            // 用户确认分享后执行的回调函数
+        },
+        cancel: function (res) {
+
+            // 用户取消分享后执行的回调函数
+        },
+        fail:function (res) {
+
+        }
+    });
+    
+
+  // 2.3 监听“分享到QQ”按钮点击、自定义分享内容及分享结果接口
+  
+    wx.onMenuShareQQ({
+      title: '微会员',
+      desc: '微会员，用户中心。',
+      link: '{$share_url}',
+      imgUrl: '{$user.headimgurl}',
+      trigger: function (res) {
+
+          // 用户确认分享后执行的回调函数
+      },
+      success: function (res) {
+
+          // 用户确认分享后执行的回调函数
+      },
+      cancel: function (res) {
+
+          // 用户取消分享后执行的回调函数
+      },
+      fail:function (res) {
+
+      }
+    });
+    
+  
+  // 2.4 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
+  
+    wx.onMenuShareWeibo({
+      title: '微会员',
+      desc: '微会员，用户中心。',
+      link: '{$share_url}',
+      imgUrl: '{$user.headimgurl}',
+      trigger: function (res) {
+
+            // 用户确认分享后执行的回调函数
+        },
+        success: function (res) {
+
+            // 用户确认分享后执行的回调函数
+        },
+        cancel: function (res) {
+
+            // 用户取消分享后执行的回调函数
+        },
+        fail:function (res) {
+
+        }
+    });
+    
+});
+    wx.error(function (res) {
+      alert(res.errMsg);
+    });
+    </script>
+{/block}

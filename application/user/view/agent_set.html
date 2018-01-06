@@ -1,0 +1,103 @@
+<include file="Public/min-header"/>
+<div class="wrapper">
+    <include file="Public/breadcrumb"/>
+    <section class="content">
+        <!-- Main content -->
+        <!--<div class="container-fluid">-->
+        <div class="container-fluid">
+            <!--新订单列表 操作信息-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i>代理人设置</h3>
+                </div>
+                <div class="panel-body">
+
+                    <form id="delivery-form" method="post" action="">
+                        <table class="table table-bordered">
+                            <tbody>
+                            <tr>
+                                <div class="row">
+                                    <td class="text-right col-sm-2">是否是代理</td>
+                                    <td colspan="3">
+                                        <select name="status" id="status" class="input-sm">
+                                            <option value="1"
+                                            <if condition="$status eq 1">selected</if>
+                                            >是</option>
+                                            <option value="0"
+                                            <if condition="$status eq 0">selected</if>
+                                            >不是</option>
+                                        </select>
+                                        <input type="hidden" name="id" class="input-sm" value="{$id}">
+                                    </td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <td>地址:</td>
+                                <td>
+                                    <div class="form-group ">
+                                        <div class="col-xs-2">
+                                            <select onchange="get_city(this)" id="province" name="province"
+                                                    class="form-control">
+                                                <option value="0">选择省份</option>
+                                                <volist name="province" id="vo">
+                                                    <option value="{$vo.id}">{$vo.name}</option>
+                                                </volist>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <select onchange="get_area(this)" id="city" name="city"
+                                                    class="form-control">
+                                                <option value="0">选择城市</option>
+                                                <volist name="city" id="vo">
+                                                    <option value="{$vo.id}">{$vo.name}</option>
+                                                </volist>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <select id="district" name="district" class="form-control">
+                                                <option value="0">选择区域</option>
+                                                <volist name="area" id="vo">
+                                                    <option value="{$vo.id}">{$vo.name}</option>
+                                                </volist>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <input name="address" id="address" value="{$address}"
+                                                   class="form-control" placeholder="详细地址"/>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <div class="row">
+                                    <td class="text-right col-sm-2">操作备注：</td>
+                                    <td colspan="3">
+                                        <textarea name="desc" placeholder="请输入操作备注" rows="3"
+                                                  class="form-control"></textarea>
+                                    </td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="row">
+                                    <td colspan="4">
+                                        <div class="form-group text-center">
+                                            <button class="btn btn-primary" type="submit" id="disabled">提交</button>
+                                            <button onclick="history.go(-1)" class="btn btn-primary" type="button">返回
+                                            </button>
+                                        </div>
+                                    </td>
+                                </div>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>    <!-- /.content -->
+    </section>
+</div>
+
+

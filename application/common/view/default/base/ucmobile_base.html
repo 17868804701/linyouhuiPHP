@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="common@default/public/ucmobile_head"/}
+    {block name="style"}	{/block}
+</head>
+<body ontouchstart>
+<!-- 主体 -->
+{block name="body"}{/block}
+<!-- /主体 -->
+
+<!-- 底部 -->
+{include file="common@default/public/ucmobile_footer"/}
+{block name="script"}<!-- 用于加载js代码 -->{/block}
+
+<!-- 页面footer钩子，一般用于加载插件JS文件和JS代码 -->
+<div class="hidden"><!-- 用于加载统计代码等隐藏元素 -->
+    {block name="hidden"}{/block}
+</div>
+<!-- /底部 -->
+</body>
+</html>

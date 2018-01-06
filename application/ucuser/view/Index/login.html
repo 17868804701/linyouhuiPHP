@@ -1,0 +1,119 @@
+{extend name="common@default/base/ucmobile_base" /}
+{block name="body"}
+<title>登录</title>
+<link rel="stylesheet" href="__CSS__/login.css">
+<link rel="stylesheet" href="__CSS__/weui.css">
+    <!--<style>
+        .header {
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 200%;
+            color: #333;
+            margin-top: 30px;
+        }
+        .header p {
+            font-size: 14px;
+        }
+    </style>-->
+    <!--<div class="header">
+        <div class="am-g">
+            <h1>{$appinfo.public_name}</h1>
+        </div>
+        <hr />
+    </div>-->
+   <!-- <div class="bg">
+        <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+             <form  method="post" class="am-form am-form-horizontal">
+                    <div class="middle">
+                        <div class="input_box">  
+                            <img src="/static/images/user.png" class="img"></img>
+                            <intypetype="text" id="inputnum" placeholder="请输入您的手机号"    value="" name="usernum" autocomplete="off" maxlength="11">
+                            <p id="error" class="error" style="display:none;"></p>
+                        </div>
+                        <div class="input_box">
+                            <img src="/static/images/pw.png" class="img"></img>		
+                            <intypetypasswordword" id="inputpwd" placeholder="请输入密码"  value="" napasswordword" autocomplete="off">
+                        </div>
+                        <div class="check">
+                            <div style="float:left;width:206px;">
+                                <label>
+                                    <div class=""><a class="color" href="{:url( 'Ucuser/Index/register',array('mp_id'=>$mp_id) )}">未注册，注册</a></div>
+                                </label>
+                            </div>
+                            <div  style="float:right;width:170px;">
+                                <div class=""><a class="color" href="{:url( 'Ucuser/Index/forget',array('mp_id'=>$mp_id) )}" >忘记密码？</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="but">
+                        <button class="btn ajax-post btn-success login" id="submtypetype="submit" target-form="form-horizontal"><span class="login_font">登录</span></button>
+                    </div>
+	        </form>
+            <div class="bottom">
+                <label>您的专业企业管家</label>
+            </div>
+            <script src="__JS__/jquery-2.1.4.min.js"></script>
+            <script src="__JS__/login.js"></script>
+                    
+                
+            </div>-->
+<!--body end -->
+<div class="bg">
+<form id="form" action="{:url( 'Ucuser/Index/login',array('mp_id'=>$mp_id) )}" method="post"  style="width: 70%;margin: 0 auto;text-align: center;margin-top: 200px;">
+    <div class="weui_cells weui_cells_form" style="height: 600px;">
+        <div class="weui_cell" style="height: 200px;font-size: 50px;color: #616161;">
+            <img src="/static/images/user.png" class="img"></img>
+            <div class="weui_cell_bd weui_cell_primary" style="margin-left: 20px;">
+                <input class="weui_input" id="inputnum" type="tel" required="" pattern="[0-9]{11}" maxlength="11" placeholder="请输入手机号" emptytips="请输入手机号" notmatchtips="请输入正确的手机号">
+                <p id="error" class="error" style="display:none;"></p>
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+            </div>
+        </div>
+        <div class="weui_cell" style="height: 200px;font-size: 50px;">
+            <img src="/static/images/pw2.png" class="img"></img>
+            <div class="weui_cell_bd weui_cell_primary" style="margin-left: 20px;">
+                <input class="weui_input" type="password" id="inputpwd" required=""  placeholder="输入密码" emptytips="请输入密码" notmatchtips="请输入正确密码">
+            </div>
+            <div class="weui_cell_ft">
+                <i class="weui_icon_warn"></i>
+            </div>
+        </div>
+         <div class="check">
+             <div style="float:left;width:206px;">
+                <label>
+                    <div class=""><a class="color" href="{:url( 'Ucuser/Index/register',array('mp_id'=>$mp_id) )}">未注册，注册</a></div>
+                </label>
+             </div>
+            <div  style="float:right;width:170px;">
+                    <div class=""><a class="color" href="{:url( 'Ucuser/Index/forget',array('mp_id'=>$mp_id) )}" >忘记密码？</a></div>
+             </div>
+        </div>
+    </div>
+    <div class="but">
+         <button class="btn ajax-post btn-success login" id="submit" type="submit" target-form="form-horizontal"><span class="login_font">登录</span></button>
+    </div>
+</form>
+</div>
+<div class="bottom">
+		<label>您的专业企业管家</label>
+	</div>
+    <script src="__JS__/jquery-2.1.4.min.js"></script>
+     <script src="__JS__/login.js"></script>
+    <script type="text/javascript">
+            $("form").submit(function(){ 
+                var self = $(this);
+                console.log("WWW",self);
+                $.post(self.attr("action"),self.serialize(), success, "json");
+                return false;
+                function success(data){
+                        window.location.href = "{:url( 'Ucuser/Index/login',array('mp_id'=>$mp_id) )}";
+                }
+            });
+            
+    </script>
+    {/block}
+    
+

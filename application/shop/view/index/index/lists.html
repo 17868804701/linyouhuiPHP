@@ -1,0 +1,57 @@
+﻿<html>
+{include file="index/public/header" /}
+<title>{$cat_title}</title>
+<body>
+<link rel="stylesheet" href="__CSS__/lists.css">
+{notempty name="banner"}
+<div class="banner"><img src="{$banner}" style="width:100%;" /></div>
+{/notempty}
+<div id="tableList"></div>
+{include file="index/public/nav-footer" /}
+<script type="text/javascript" src="__JS__/handlebars-1.0.0.beta.6.js"></script>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script id="table-template" type="text/x-handlebars-template">
+			</script>
+
+{if condition="$flag eq 1"}
+<script type="text/javascript">
+    var list =<?php echo json_encode($list);?>;
+    var html="";
+    for(var i=0;i<list.length;i++){
+        html+="<div class='menu'>";
+        html+="<a  href='{:url('shop/index/detail',['mp_id'=>$mp_id])}?id="+list[i].id+"'>";
+        html+="<div class='img'>";
+        html+="<img src='"+list[i].image+"' alt='图标' class='photo'>";
+        html+="</div>";
+        html+="<div class='content'>";
+        html+="<span class='title'>"+list[i].title+"</span>";
+        html+="<div class='introduce'>"+list[i].content+"</div>";
+        html+="</div>";
+        html+="</a>";
+        html+="</div>";
+    }
+    document.getElementById("tableList").innerHTML = html;
+</script>
+{else/}
+<script type="text/javascript">
+    var list =<?php echo json_encode($list);?>;
+    var html="";
+    for(var i=0;i<list.length;i++){
+        html+="<div class='menu'>";
+        html+="<a  href='{:url('shop/index/lists',['mp_id'=>$mp_id])}?id="+list[i].id+"'>";
+        html+="<div class='img'>";
+        html+="<img src='"+list[i].image+"' alt='图标' class='photo'>";
+        html+="</div>";
+        html+="<div class='content'>";
+        html+="<span class='title'>"+list[i].title+"</span>";
+        html+="<div class='introduce'>"+list[i].content+"</div>";
+        html+="</div>";
+        html+="</a>";
+        html+="</div>";
+    }
+    document.getElementById("tableList").innerHTML = html;
+</script>
+{/if}
+
+</body>
+</html>

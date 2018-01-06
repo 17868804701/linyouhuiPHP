@@ -1,0 +1,56 @@
+
+html{
+    font-size:18px;
+}
+#searchResult{
+    display:none;
+    margin:0;
+    position:absolute;
+    width:100%;
+    text-align:center;
+    background-color: #EFEFEF;
+    color:#666;
+}
+
+/*footer*/
+footer{margin-top:60px;}
+.weui-tabbar{
+    position: fixed;
+}
+.weui-badge{
+    position: absolute;
+    top: -15px;
+    right: -12px;
+}
+.weui-badge_dot{
+    right: -5px;
+}
+.point-cart, .point-user{
+    display: none;
+    position: relative;
+}
+
+/*swiper*/
+.swiper-container {
+    width: 100%;
+}
+.swiper-container img{
+    width:100vw;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}

@@ -1,0 +1,7 @@
+body{font-family: "Microsoft YaHei" ! important;background-color: #efeff4;}
+.top{background: #ffffff;min-height: 92px;}
+.div{width:100%;min-height:130px;border-bottom: 1px solid #d9d9d9;}
+.name{float:left;font-size: 15px;margin-top: 28px;margin-left: 20px;color: rgb(97,97,97);}
+.content{float: left;font-size: 15px;margin-left: 16px;margin-top: 28px;color: rgb(147,147,147);}
+.state{font-size: 16px;padding-top: 28px;float: left;margin-left: 38px;color: #616161;}
+.info{width: 100px;height: 30px;margin-left: 270px;margin-top: 28px;background-color: #01bae2;border: none;color: #ffffff;border-radius: 5px;}

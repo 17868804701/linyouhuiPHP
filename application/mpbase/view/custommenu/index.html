@@ -1,0 +1,76 @@
+{extend name="admin@Base/base"/}
+
+{block name="body"}
+    <div class="main-title">
+        <h2>自定义菜单管理</h2>
+    </div>
+
+    <div class="clearfix with-padding row">
+        <div class="col-xs-10">
+            <a class="btn btn-ajax btn-success btn btn-default" href="{:url('add')}">新增菜单</a>
+            <!--<a class="btn btn-ajax btn-success btn btn-default" href="{:url('create')}"  >生成微信自定义菜单</a>-->
+            <a class="btn btn-ajax btn-success btn btn-default" href="{:url('getmenu')}"  >获取公众号现有自定义菜单</a>
+        </div>
+    </div>
+
+
+
+    <div id="home2" style="margin-left: 20px;">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <table id="sample-table-1"
+                       class="table table-striped table-bordered table-hover">
+
+                    {volist name="list" key="key" id="value"}
+
+                        <br/><br/>顶级：<input type="text" class="input" name="menu_name"
+                                                  value="{$value['title']}" id="name" >
+                        <a href="{:url('custommenu/add',array('id'=>$value['id']))}" class="btn btn-white btn-sm">修改</a>
+                        {php}
+                        $menu2 = db ( "CustomMenu" )->where("pid=".$value['id'])->order('sort asc')->select ();
+                        {/php}
+                        {volist name="menu2" key="key" id="value"}
+                        <br/>&nbsp&nbsp&nbsp&nbsp∟<input type="text" class="input" name="menu_name"
+                                                               value="{$value['title']}" id="name" >
+                        <a href="{:url('custommenu/add',array('id'=>$value['id']))}" class="btn btn-white btn-sm">修改</a>
+                        <a class="J_ajax_del btn btn-white btn-sm"  href="javascript:drop_confirm('确定要删除这个菜单吗？','{:url('Admin/Weixin/delmenu',array('id'=>$value['id']))}')">删除</a>
+                        {/volist}
+                    {/volist}
+
+
+                    <script>
+                        function drop_confirm(message,pathurl)
+                        {
+                            if(confirm(message))
+                            {
+                                window.location.href=pathurl;
+                            }else
+                            {
+                                return false;
+                            }
+                        }
+                    </script>
+                </table>
+                <div class="form-actions">
+                    <a
+                            href="{:url('create')}"
+                            class="btn btn-primary btn_submit mr10" type="submit">重新生成菜单</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{/block}
+
+{block name="script"}
+<!--{load href="__ROOT__/admin/static/js/jquery.simple-color.js" /}-->
+<!--{load href="__ROOT__/mpbase/static/js/custommenu.js" /}-->
+<!--{load href="__ROOT__/zui/lib/chosen/chosen.icons.min.js" /}-->
+<!--{load href="__ROOT__/zui/lib/chosen/chosen.icons.css" /}-->
+{/block}
