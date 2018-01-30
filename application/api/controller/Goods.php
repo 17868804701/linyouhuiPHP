@@ -1,12 +1,9 @@
 <?php
-
 namespace app\api\controller;
-
 use app\common\model\ShopGoods;
 use think\Controller;
 use think\Request;
 use app\shop\model\Shop;
-
 class Goods extends Controller
 {
     /**
@@ -33,7 +30,6 @@ class Goods extends Controller
                     $item['user'] = $user['nickname'];
                     $item['avatar'] = $user['headimgurl'];
                 }
-
                 //相册
                 if (!is_null($item['image'])){
                     $item['image'] = get_cover($item['image'],'url');
@@ -41,17 +37,13 @@ class Goods extends Controller
                 if ($item['goods_img'] != ''){
                     $alb = explode(',',$item['goods_img']);
                     foreach ($alb as $a){
-
-
                         $album[] = get_cover($a,'url');
                     }
                     $item['goods_img'] = $album;
                 }
             }
-
             return json($list);
         }
-
         $where = 'is_on_sale =0';
         //最热商品
         if (isset($id['hot'])){
@@ -64,21 +56,14 @@ class Goods extends Controller
             }elseif($num == 3){
                 $list = db('ShopGoods')->where("shop_id = $shop_id and is_on_sale =0")->order('goods_price','desc')->select();
             }
-
-
         }else{
-
-                //首页
+            //首页
             if (!empty($id)){
                 $list =  model('shop_goods')->Lists($id);
             }else{
                 $list =  model('shop_goods')->where('is_on_sale =0')->order('sort,on_time', 'desc')->select();
             }
-
         }
-
-
-
         foreach($list as &$item){
             //yonghu
             $user = db("Ucuser")->find($item['user_id']);
@@ -86,7 +71,6 @@ class Goods extends Controller
                 $item['user'] = $user['nickname'];
                 $item['avatar'] = $user['headimgurl'];
             }
-
             //相册
             if (!is_null($item['image'])){
                 $item['image'] = get_cover($item['image'],'url');
@@ -94,17 +78,13 @@ class Goods extends Controller
             if ($item['goods_img'] != ''){
                 $alb = explode(',',$item['goods_img']);
                 foreach ($alb as $a){
-
-
                     $album[] = get_cover($a,'url');
                 }
                 $item['goods_img'] = $album;
             }
         }
-
         return json($list);
     }
-
     /**
      * 显示创建资源表单页.
      *
@@ -112,9 +92,7 @@ class Goods extends Controller
      */
     public function create()
     {
-
     }
-
     /**
      * 用来提交表单数据保存到数据库
      *
@@ -123,11 +101,9 @@ class Goods extends Controller
      */
     public function save(Request $request)
     {
-
         //判断用户权限
         $userid = input('user_id');
         $shopid = input('shop_id');
-
         //提交数据
         $param = input('post.');
 //        trace($param,'提交了什么');
@@ -141,9 +117,7 @@ class Goods extends Controller
             $param['is_on_sale'] = 1;
             $flag = false;
         }
-
         $file = request()->file('picture');
-
         //上传图片
         if ($file)
             $param['image'] = model('picture')->picture($file);
@@ -161,10 +135,7 @@ class Goods extends Controller
         }else{
             return  json(array('status'=>0,'msg'=>'添加失败'));
         }
-
-
     }
-
     /**
      * 显示指定的资源
      *
@@ -175,7 +146,6 @@ class Goods extends Controller
     {
         //
     }
-
     /**
      * 显示编辑资源表单页.
      *
@@ -186,7 +156,6 @@ class Goods extends Controller
     {
         //
     }
-
     /**
      * 保存更新的资源
      *
@@ -203,14 +172,12 @@ class Goods extends Controller
             if('' == $v) unset($param[$k]);
         }
         $ret = model('shop_goods')->edit($param);
-
         if ($ret){
             return  json(array('status'=>1,'msg'=>'添加成功'));
         }else{
             return  json(array('status'=>0,'msg'=>'添加失败'));
         }
     }
-
     /**
      * 删除指定资源
      *
@@ -221,7 +188,6 @@ class Goods extends Controller
     {
         $ret = model('shop_goods')->where(['id'=>$id])->delete();
         db('SpecGoodsPrice')->where('goods_id',$id)->delete();
-
         if ($ret){
             return  json(array('status'=>1,'msg'=>'删除成功'));
         }else{

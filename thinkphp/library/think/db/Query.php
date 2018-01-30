@@ -1450,6 +1450,7 @@ class Query
     {
         if (!$tableName) {
             $tableName = $this->getTable();
+            error_log($tableName."fffff\n", 3, "d:\\php.log");
         }
         if (is_array($tableName)) {
             $tableName = key($tableName) ?: current($tableName);

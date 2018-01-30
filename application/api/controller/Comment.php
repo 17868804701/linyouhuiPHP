@@ -16,12 +16,12 @@ class Comment extends Controller
      */
     public function index(Request $request)
     {
+        error_log("哈哈哈哈哈999",3,'d:/test.log');
         $id = input('goods_id');
         $parent = input('parent_id');
         if($id){
             $comm = db('ShopComment')->where('goods_id',$id)->order('id','desc')->select();
         }else{
-
             $comm = db('ShopComment')->where('parent_id',$parent)->order('id','desc')->select();
         }
         //spec
@@ -48,6 +48,7 @@ class Comment extends Controller
      */
     public function save(Request $request)
     {
+
         $data = input('post.');
         unset($data['id']);
         $id = input('id');

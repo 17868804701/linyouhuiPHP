@@ -1,12 +1,9 @@
 <?php
-
 namespace app\api\controller;
-
 use think\Controller;
 use think\Request;
 use app\shop\model\Shop;
 use app\common\model\Message as Msg;
-
 class Message extends Controller
 {
     /**
@@ -19,7 +16,6 @@ class Message extends Controller
         $id = input('id');
         $status = input('status',0);
         $read = input('read');
-
         if (isset($read)){
             $msg = db('ShopMessages')->where(array("owner_id"=>$id,'type'=>$status,'status'=>$read))->order('id','desc')->select();
             foreach ($msg as &$m){
@@ -36,7 +32,6 @@ class Message extends Controller
         }
         return json($msg);
     }
-
     /**
      * 显示创建资源表单页.
      *
@@ -44,9 +39,7 @@ class Message extends Controller
      */
     public function create()
     {
-
     }
-
     /**
      * 保存新建的资源
      *
@@ -64,18 +57,14 @@ class Message extends Controller
         $type = input('types');
         $data['goods_id'] = input('goods_id');
         $data['goods_name'] = input('goods_name');            //通过商品
-
         $data['create_time'] = time();
         $data['brief'] = $data['goods_name'].'已通过上架审核';
         $data['type'] = 3;//普通小学
-
-            db('ShopGoods')->where('id',$data['goods_id'])->setField(['is_on_sale'=>0]);
-            db('ShopMessages')->where('id',$id)->setField(['status'=>1]);
-            $ret = db('ShopMessages')->insert($data);
-
+        db('ShopGoods')->where('id',$data['goods_id'])->setField(['is_on_sale'=>0]);
+        db('ShopMessages')->where('id',$id)->setField(['status'=>1]);
+        $ret = db('ShopMessages')->insert($data);
         return $ret;
     }
-
     /**
      * 显示指定的资源
      *
@@ -86,7 +75,6 @@ class Message extends Controller
     {
         //
     }
-
     /**
      * 显示编辑资源表单页.
      *
@@ -98,7 +86,6 @@ class Message extends Controller
         $ret = db('ShopMessages')->where('id',$id)->setField(['status'=>1]);
         return $ret;
     }
-
     /**
      * 保存更新的资源
      *
@@ -110,7 +97,6 @@ class Message extends Controller
     {
         //
     }
-
     /**
      * 删除指定资源
      *

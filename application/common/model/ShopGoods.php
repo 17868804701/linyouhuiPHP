@@ -47,10 +47,12 @@ class ShopGoods extends Model{
 
         trace($data,'商品');
         if (empty($data['id'])){
+            error_log("\n11\n", 3, "d:\\php.log");
             $ret = $this->allowField(true)->save($data);
             $goods_id = $this->id;
             trace($goods_id,'商品ID');
         }else{
+            error_log("\n22\n", 3, "d:\\php.log");
             $ret = $this->allowField(true)->save($data,['id'=>$data['id']]);
             $goods_id = $data['id'];
         }

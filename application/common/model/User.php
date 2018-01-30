@@ -113,6 +113,7 @@ class User
      */
     function query_user($pFields = null, $uid = 0)
     {
+        error_log("==", 3, "d:\php.log");
         $user_data = array();//用户数据
         $fields = $this->getFields($pFields);//需要检索的字段
         $uid = (intval($uid) != 0 ? $uid : get_uid());//用户UID

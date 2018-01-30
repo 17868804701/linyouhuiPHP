@@ -842,7 +842,9 @@ trace($data,'date_infd');
     {
         if (true === $field) {
             $field = $this->db()->getTableInfo('', 'fields');
+
         }
+
         $this->field = $field;
         return $this;
     }
